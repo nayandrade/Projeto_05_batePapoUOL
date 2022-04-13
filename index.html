@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&family=Qahiri&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,700;1,900&family=Stick&family=Stick+No+Bills:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&family=Qahiri&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,700;1,900&family=Stick&family=Stick+No+Bills:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,16 +18,92 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/estilo.css">
 
-
     <title>Bate Papo Uol</title>
     <link rel="shortcut icon" href="img/logo.jpg">
-
 </head>
-
 <body>
-    
+    <div class="login">
+        <img src="img/logo 2.png" alt="">
+        <input type="text" placeholder="Digite seu nome" />
+        <button onclick="entrar()">Entrar</button>
+
+    </div>
+    <header>
+        <img src="img/logo 1.png" alt="">
+        <div class="menu">
+            <ion-icon name="people" onclick="mostrarMenu()"></ion-icon>
+        </div>
+    </header>
+    <menu>
+        <h2 class="contatos">
+            Escolha um contato<br>para enviar mensagem:
+        </h2>
+        <div class="destino">
+            <div class="sub-destino">
+                <ion-icon name="people"></ion-icon>
+                <h3>
+                    Todos
+                </h3>
+            </div>
+            <img src="img/Vector.png" alt="">
+        </div>
+        <div class="destino">
+            <div class="sub-destino">
+                <ion-icon name="person-circle"></ion-icon>
+                <h3>
+                    João
+                </h3>
+            </div>
+            <img src="img/Vector.png" alt="">
+        </div>
+        <div class="destino">
+            <div class="sub-destino">
+                <ion-icon name="person-circle"></ion-icon>
+                <h3>
+                    Maria
+                </h3>
+            </div>
+            <img src="img/Vector.png" alt="">
+        </div>
+        <div class="visibilidade">
+            <h2>
+                Escolha a visibilidade:
+            </h2>
+            <div class="destino">
+                <div class="sub-destino">
+                    <ion-icon name="lock-open"></ion-icon>
+                    <h3>
+                        Público
+                    </h3>
+                </div>
+                <img src="img/Vector.png" alt="">
+            </div>
+            <div class="destino">
+                <div class="sub-destino">
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <h3>
+                        Reservadamente
+                    </h3>
+                </div>
+                <img src="img/Vector.png" alt="">
+            </div>
+        </div>
+    </menu>
+    <main>
+        <div class="sombra" onclick="esconderMenu()"></div>
+
+
+    </main>
+    <footer>
+        <div class="escrever">
+            <input type="text" placeholder="Escreva aqui..." />
+        </div>
+        <div class="enviar-mensagem">
+            <ion-icon name="paper-plane-outline"></ion-icon>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="scripts.js"></script>
-
 </body>
-
 </html>
