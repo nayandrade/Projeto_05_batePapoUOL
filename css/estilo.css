@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #F3F3F3;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
 /* h1 {
     font-weight: 700;
     display: flex;
@@ -22,11 +28,16 @@ h2 {
     
 }
 
-body {
-    background-color: #F3F3F3;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+p {
+    margin: 4px;
+    font-size: 14px;
 }
+
+strong {
+    font-weight: 700;
+}
+
+
 
 header {
     position: fixed;
@@ -103,9 +114,40 @@ menu {
     transition: all 300ms linear;
 }
 
-/* main {
+main {
+    margin-top: 106px;
+}
 
-} */
+.cinza {
+    opacity: 0.5;
+}
+
+.mensagem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 2px 8px;
+    border-radius: 2px;
+}
+
+.mensagem-privada {
+    background-color: #FFDEDE;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 2px 8px;
+}
+
+.status {
+    background-color: #DCDCDC;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 2px 8px;
+}
 
 .sombra {
     position: fixed;
