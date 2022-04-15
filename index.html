@@ -24,12 +24,12 @@
 <body>
     <div class="login">
         <img src="img/logo 2.png" alt="">
-        <input type="text" placeholder="Digite seu nome" />
-        <button onclick="entrar()">Entrar</button>
+        <input class="usuario" type="text" placeholder="Digite seu nome" />
+        <button onclick="login()">Entrar</button>
 
     </div>
     <header>
-        <img src="img/logo 1.png" alt="">
+        <img src="img/logo 1.png" onclick="sair()" alt="">
         <div class="menu">
             <ion-icon name="people" onclick="mostrarMenu()"></ion-icon>
         </div>
@@ -100,9 +100,9 @@
     </main>
     <footer>
         <div class="escrever">
-            <input type="text" placeholder="Escreva aqui..." />
+            <input class="texto" type="text" placeholder="Escreva aqui..." />
         </div>
-        <div class="enviar-mensagem">
+        <div class="enviar-mensagem" onclick="enviarMensagem()">
             <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
     </footer>
