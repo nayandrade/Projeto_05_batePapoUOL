@@ -25,7 +25,16 @@ h2 {
     justify-content: center;
     text-align: center;
     height: 66px;
-    
+
+}
+
+h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    max-width: 90%;
 }
 
 p {
@@ -37,6 +46,20 @@ strong {
     font-weight: 700;
 }
 
+ul {
+    margin: 0 12px;
+}
+
+li {
+    height: 36px;
+    font-size: 16px;
+    width: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 12px;
+    cursor: pointer;
+}
 
 
 header {
@@ -111,7 +134,7 @@ menu {
     right: -70%;
     width: 70%;
     height: 100%;
-    z-index: 2;
+    z-index: 3;
     transition: all 300ms linear;
 }
 
@@ -159,13 +182,13 @@ main {
     right: -100%;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 2;
     transition: all 100ms ease-in;
-    background-color: rgba(0, 0, 0, 0.6);   
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .menu {
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .show-menu {
@@ -191,18 +214,37 @@ main {
     width: 99%;
     display: flex;
     align-items: center;
-    justify-content: space-between;    
+    justify-content: space-between;
     margin: 0 12px;
+    cursor: pointer;
 }
 
-.destino ion-icon {
-    margin: 0 11px;
-    color: black;
-    font-size: 20px;
-
+.mostrar-check {
+    display: flex;
 }
 
 .destino img {
+    display: none;
+}
+
+li ion-icon {
+    margin: 0 11px;
+    color: black;
+    font-size: 20px;
+}
+
+.usuario ion-icon {
+    margin: 0 11px;
+    color: black;
+    font-size: 20px;
+}
+
+.usuario img {
+    display: none;
+}
+
+.check-oculto,
+.destino-oculto {
     height: 10px;
     width: 10px;
     margin: 0 15px;
@@ -214,7 +256,8 @@ main {
 
 .sub-destino ion-icon {
     margin: 0 11px;
-    color: black
+    color: black;
+    font-size: 20px;
 }
 
 .login {
@@ -238,7 +281,7 @@ main {
     width: 75%;
     height: 54px;
     margin: 10px;
-    border: 1px solid #d7d7d7; 
+    border: 1px solid #d7d7d7;
     font-size: 18px;
     margin: 94px 0 15px 0;
     text-align: center;
