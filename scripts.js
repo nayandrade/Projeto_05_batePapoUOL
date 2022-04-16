@@ -116,7 +116,7 @@ function mensagem(tipoMensagem) {
     console.log(tipoMensagem);
     let visibilidade = document.querySelector(".check-oculto.check");
     console.log(visibilidade);
-    let tipoM = visivel.querySelector("spam").innerHTML;
+    let tipoM = visivel.querySelector("span").innerHTML.trim();
     console.log(tipoM)
     console.log(typeof (tipoM))
     if (visibilidade !== null) {
@@ -145,7 +145,7 @@ function escolherUsuario(element) {
     console.log(element)
     let selecionado = document.querySelector(".destino-oculto.check");
     console.log(selecionado)
-    para = user.querySelector("spam").innerHTML;
+    para = user.querySelector("span").innerHTML;
     console.log(para)
     if (selecionado !== null) {
         selecionado.classList.remove("check");
@@ -184,9 +184,9 @@ function renderizarUsuarios() {
         <li class="usuario" onclick="escolherUsuario(this)">
             <div class="sub-destino">
                 <ion-icon name="people"></ion-icon>
-                <spam>
+                <span>
                     Todos
-                </spam>
+                </span>
             </div>
             <img class="destino-oculto" src="img/Vector.png" alt="">
         </li>
@@ -197,9 +197,9 @@ function renderizarUsuarios() {
             <li class="usuario" onclick="escolherUsuario(this)">
                 <div class="sub-destino">
                     <ion-icon name="person-circle"></ion-icon>
-                    <spam>
+                    <span>
                     ${usuarios[i].name}
-                    </spam>
+                    </span>
                 </div>
                 <img class="destino-oculto" src="img/Vector.png" alt="">
                 

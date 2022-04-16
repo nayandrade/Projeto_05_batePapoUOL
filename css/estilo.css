@@ -28,7 +28,7 @@ h2 {
 
 }
 
-spam {
+span {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
