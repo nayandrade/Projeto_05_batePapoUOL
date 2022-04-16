@@ -40,30 +40,27 @@
         <h2 class="contatos">
             Escolha um contato<br>para enviar mensagem:
         </h2>
-        <ul>
-            
-            
+        <ul>          
         </ul>
-
         <div class="visibilidade">
             <h2>
                 Escolha a visibilidade:
             </h2>
-            <div class="destino" onclick="mensagemPublica()">
+            <div class="destino" onclick="mensagem(this)">
                 <div class="sub-destino">
                     <ion-icon name="lock-open"></ion-icon>
-                    <h3>
+                    <spam>
                         Público
-                    </h3>
+                    </spam>
                 </div>
                 <img class="check-oculto" src="img/Vector.png" alt="">
             </div>
-            <div class="destino" onclick="mensagemPrivada()">
+            <div class="destino" onclick="mensagem(this)">
                 <div class="sub-destino">
                     <ion-icon name="lock-closed"></ion-icon>
-                    <h3>
+                    <spam>
                         Reservadamente
-                    </h3>
+                    </spam>
                 </div>
                 <img class="check-oculto" src="img/Vector.png" alt="">
             </div>
@@ -81,6 +78,7 @@
     <footer>
         <div class="escrever">
             <input class="texto" type="text" placeholder="Escreva aqui..." />
+            <spam class="enviando"></spam>
         </div>
         <div class="enviar-mensagem" onclick="enviarMensagem()">
             <ion-icon name="paper-plane-outline"></ion-icon>

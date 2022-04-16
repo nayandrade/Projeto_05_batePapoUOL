@@ -28,13 +28,14 @@ h2 {
 
 }
 
-h3 {
+spam {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1; 
     -webkit-box-orient: vertical;
-    max-width: 90%;
+    max-width: 45vw;
+    font-size: 16px;
 }
 
 p {
@@ -48,6 +49,9 @@ strong {
 
 ul {
     margin: 0 12px;
+    max-height: 70%;
+    overflow-x: hidden;
+    
 }
 
 li {
@@ -55,10 +59,12 @@ li {
     font-size: 16px;
     width: 99%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     margin: 0 12px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 
@@ -116,6 +122,7 @@ footer input {
     margin: 10px;
     border: none;
     font-size: 18px;
+    
 }
 
 input:focus {
@@ -124,8 +131,13 @@ input:focus {
 
 footer input:placeholder-shown {
     font-style: italic;
-
+    color: black;
 }
+
+footer ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1; /* Firefox */
+  }
 
 menu {
     position: fixed;
@@ -196,6 +208,10 @@ main {
     right: 0;
 }
 
+.visibilidade {
+    margin: 0 12px;
+}
+
 .escrever {
     width: 95%;
 }
@@ -223,9 +239,6 @@ main {
     display: flex;
 }
 
-.destino img {
-    display: none;
-}
 
 li ion-icon {
     margin: 0 11px;
@@ -239,15 +252,16 @@ li ion-icon {
     font-size: 20px;
 }
 
-.usuario img {
-    display: none;
-}
-
 .check-oculto,
 .destino-oculto {
     height: 10px;
     width: 10px;
     margin: 0 15px;
+    display: none;
+}
+
+.check {
+    display: flex;
 }
 
 .sub-destino {
@@ -296,6 +310,13 @@ button {
     border: hidden;
     font-size: 18px;
     border-radius: 9px;
+}
+
+.enviando {
+    margin: 0 10px;
+    opacity: 0.5;
+    font-weight: 300;
+    font-size: 14px;
 }
 
 .esconder {

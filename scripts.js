@@ -2,27 +2,21 @@ let mensagens = []
 let usuarios = []
 let nome;
 let para = "Todos"
-let texto;
+let texto = ""
 let tipo = "message"
-// let mensagensNovas = []
 
 function mostrarMenu() {
     document.querySelector("menu").classList.add("show-menu");
     document.querySelector("menu").addEventListener("mouseleave", esconderMenu)
     document.querySelector(".sombra").classList.add("show-menu");
-    //console.log("apareceu")
 }
 
 function esconderMenu() {
     document.querySelector("menu").classList.remove("show-menu");
     document.querySelector(".sombra").classList.remove("show-menu");
-    //console.log("sumiu");
 }
 
 function login() {
-    // let promise = axios("https://mock-api.driven.com.br/api/v6/uol/messages");
-    // promise.then(entrar);
-    // promise.catch(tratarFalha)
     nome = document.querySelector(".usuario").value
     console.log(nome)
     let novoAcesso = {
@@ -34,22 +28,11 @@ function login() {
     promise.catch(tratarFalha)
 }
 
-// function criarUsuario(resposta) {
-//     let status = resposta.status;
-//     console.log(resposta.status);
-//     if (status === 400) {
-
-//     } else {
-//         buscarMensagens()
-//     }           
-// }
-
 function outroNome() {
     alert("Digite outro nome")
     console.log("Digite outro nome")
     document.querySelector("input").value = ""
     document.querySelector("input").placeholder = "Digite outro nome..."
-
 }
 
 function sair() {
@@ -66,8 +49,6 @@ function buscarMensagens() {
 
 function carregarMensagens(response) {
     mensagens = response.data;
-    //console.log(response.status);
-    // console.log (mensagens)
     renderizarMensagens()
 }
 
@@ -90,13 +71,10 @@ function renderizarMensagens() {
         }
     }
     document.querySelector(".container").lastChild.scrollIntoView()
-    setInterval(buscarMensagens, 3000);
+    setInterval(buscarMensagens, 30000);
     setInterval(manterConexao, 5000)
     // LEMBRAR DE MUDAR O TEMPO DE RELOAD!!!!!
-    //setInterval(adicionarMensagens, 3000); 
 }
-
-
 
 function manterConexao() {
     let manterAcesso = {
@@ -104,23 +82,26 @@ function manterConexao() {
     };
 
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", manterAcesso);
-    promise.then(console.log("Acesso Mantido"));
+    //promise.then(console.log("Acesso Mantido"));
 
 }
 
 function enviarMensagem() {
     texto = document.querySelector(".texto").value
+    let destinatario = String(para)
+    let msg = String(tipo)
 
     let mensagem = {
         from: nome,
-        to: para,
+        to: destinatario,
         text: texto,
-        type: tipo
+        type: msg,
     };
 
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagem);
     promise.then(apagarMensagem);
     promise.catch(sair)
+    console.log(mensagem)
 
 }
 
@@ -128,44 +109,60 @@ function apagarMensagem() {
     document.querySelector(".texto").value = ""
 }
 
-function escolherDestino(elemento) {
-    let check = document
-        .querySelector(".visibilidade")
-        .querySelector(".check")
 
-    if (check !== null) {
-        check.classList.remove("check");
+
+function mensagem(tipoMensagem) {
+    let visivel = tipoMensagem;
+    console.log(tipoMensagem);
+    let visibilidade = document.querySelector(".check-oculto.check");
+    console.log(visibilidade);
+    let tipoM = visivel.querySelector("spam").innerHTML;
+    console.log(tipoM)
+    console.log(typeof (tipoM))
+    if (visibilidade !== null) {
+        visibilidade.classList.remove("check");
     }
-    elemento.classList.add("check")
-    console.log(check)
+    tipoMensagem.lastElementChild.classList.add("check")
+
+    //MEU DEUSO QUE TA ERRADO AQUI SAULO?
+ 
+    if (tipoM === 'Reservadamente') {
+        tipo = "private_message";
+    } else if (tipoM === 'Público') {
+        tipo = "message"
+    }
+
+    console.log(tipo)
+    console.log(typeof (tipo))
+
+    renderizarEnviando()
 }
 
-function mensagemPublica() {
-    tipo = "message"
-    console.log(tipo)
 
-}      
 
-function mensagemPrivada() {
-    tipo = "private_message"
-    console.log(tipo)
+function escolherUsuario(element) {
+    let user = element;
+    console.log(element)
+    let selecionado = document.querySelector(".destino-oculto.check");
+    console.log(selecionado)
+    para = user.querySelector("spam").innerHTML;
+    console.log(para)
+    if (selecionado !== null) {
+        selecionado.classList.remove("check");
+    }
+    element.lastElementChild.classList.add("check")
+    renderizarEnviando()
+}
 
-}    
 
-// function escolherVisibilidade(elemento) {
-//     elemento = tipoMensagem
-//     console.log(tipoMensagem)
+function renderizarEnviando() {
+    if (tipo === "private_message") {
+        document.querySelector(".enviando").innerHTML = `Enviando para ${para} (Reservadamente)`
+    } else {
+        document.querySelector(".enviando").innerHTML = `Enviando para ${para} `
+    }
+}
 
-//     let visibilidade = document
-//         .querySelector(".check-oculto")
-//         .querySelector(".mostrar-check");
-
-//     if (visibilidade !== null) {
-//         visibilidade.classList.remove("mostrar-check");
-//     }
-//     elemento.lastElementChild.classList.add("mostrar-check");
-
-// }
 
 function buscarUsuarios() {
     let promise = axios("https://mock-api.driven.com.br/api/v6/uol/participants");
@@ -175,67 +172,56 @@ function buscarUsuarios() {
 
 function carregarUsuarios(response) {
     usuarios = response.data;
-    console.log(response.status);
-    console.log(usuarios)
+    //console.log(response.status);
+    //console.log(usuarios)
     renderizarUsuarios()
 }
 
 function renderizarUsuarios() {
     let usuario = document.querySelector("ul");
-    console.log(usuario);
+    //console.log(usuario);
     usuario.innerHTML = `
-        <li class="usuario" onclick="escolherUsuario('Todos')">
+        <li class="usuario" onclick="escolherUsuario(this)">
             <div class="sub-destino">
                 <ion-icon name="people"></ion-icon>
-                <h3>
+                <spam>
                     Todos
-                </h3>
+                </spam>
             </div>
-            <img class="check-oculto" src="img/Vector.png" alt="">
+            <img class="destino-oculto" src="img/Vector.png" alt="">
         </li>
     `
     for (let i = 0; i < usuarios.length; i++) {
         usuario.innerHTML += `
             
-            <li class="usuario" onclick="escolherUsuario('${usuarios[i].name}')">
+            <li class="usuario" onclick="escolherUsuario(this)">
                 <div class="sub-destino">
                     <ion-icon name="person-circle"></ion-icon>
-                    <h3>
+                    <spam>
                     ${usuarios[i].name}
-                    </h3>
+                    </spam>
                 </div>
                 <img class="destino-oculto" src="img/Vector.png" alt="">
+                
+                
             </li>        
         `
     }
     setInterval(buscarUsuarios, 10000)
 }
 
-function escolherUsuario(elemento) {
-    para = String(elemento)
-    console.log(elemento)
 
 
-    // let check = document
-    //     .querySelector(".destino-oculto")
-    //     .querySelector(".mostrar-check");
+document.addEventListener("keypress", function (e) {
+    if (e.key === 'Enter') {
 
-    // if (check !== null) {
-    //     check.classList.remove("mostrar-check");
-    // }
-    // elemento.lastElementChild.classList.add("mostrar-check");
-}
-
-document.addEventListener("keypress", function(e) {
-    if(e.key === 'Enter') {
-    
         let btn = document.querySelector(".enviar-mensagem");
-      
-      btn.click();
-      console.log(btn)
-    
+
+        btn.click();
+        console.log(btn)
+
     }
-  });
+});
 
 
 
