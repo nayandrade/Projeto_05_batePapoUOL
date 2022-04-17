@@ -2,10 +2,15 @@
     box-sizing: border-box;
 }
 
+
+
 body {
     background-color: #F3F3F3;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* h1 {
@@ -32,7 +37,7 @@ span {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 1; 
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     max-width: 45vw;
     font-size: 16px;
@@ -41,6 +46,7 @@ span {
 p {
     margin: 4px;
     font-size: 14px;
+    min-width: 65px;
 }
 
 strong {
@@ -51,13 +57,12 @@ ul {
     margin: 0 12px;
     max-height: 70%;
     overflow-x: hidden;
-    
 }
 
 li {
     height: 36px;
     font-size: 16px;
-    width: 99%;
+    width: 95%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -79,7 +84,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 11px;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -106,7 +110,6 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 11px;
     box-shadow: 0 -4px 6px 0 rgba(0, 0, 0, 0.05);
 
 }
@@ -123,6 +126,7 @@ footer input {
     border: none;
     font-size: 18px;
     
+
 }
 
 input:focus {
@@ -134,10 +138,12 @@ footer input:placeholder-shown {
     color: black;
 }
 
-footer ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+footer ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: black;
-    opacity: 1; /* Firefox */
-  }
+    opacity: 1;
+    /* Firefox */
+}
 
 menu {
     position: fixed;
@@ -151,9 +157,15 @@ menu {
 }
 
 main {
-    margin-top: 106px;
-    margin-bottom: 106px;
+    margin: 106px 0 84px 0;
     width: 100%;
+
+}
+
+.container {
+    width: 100%;
+
+
 }
 
 .cinza {
@@ -162,30 +174,36 @@ main {
 
 .mensagem {
     background-color: #ffffff;
-    display: flex;
+    display: flex;    
     align-items: center;
     width: 100%;
     min-height: 40px;
-    margin: 2px 8px;
+    margin: 2px 0;
     border-radius: 2px;
+    word-break: break-all;
+    
 }
 
 .mensagem-privada {
     background-color: #FFDEDE;
-    display: flex;
+    display: flex;    
     align-items: center;
     width: 100%;
     min-height: 40px;
-    margin: 2px 8px;
+    margin: 2px 0;
+    border-radius: 2px;
+    word-break: break-all;
 }
 
 .status {
     background-color: #DCDCDC;
-    display: flex;
+    display: flex;    
     align-items: center;
     width: 100%;
     min-height: 40px;
-    margin: 2px 8px;
+    margin: 2px 0;
+    border-radius: 2px;
+    word-break: break-all;
 }
 
 .sombra {
@@ -227,7 +245,7 @@ main {
 .destino {
     height: 36px;
     font-size: 16px;
-    width: 99%;
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;

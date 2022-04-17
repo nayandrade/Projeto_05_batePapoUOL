@@ -23,12 +23,17 @@ function login() {
     };
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", novoAcesso);
     promise.then(buscarMensagens)
-    setInterval(buscarMensagens, 3000);
+    
     promise.then(buscarUsuarios)
-    setInterval(buscarUsuarios, 10000)
-    setInterval(manterConexao, 5000)
+    promise.then(tratarSucesso)
     promise.catch(tratarFalha)
     promise.then(renderizarEnviando)
+}
+
+function tratarSucesso() {
+    setInterval(buscarMensagens, 3000);
+    setInterval(buscarUsuarios, 10000);
+    setInterval(manterConexao, 5000);
 }
 
 function outroNome() {
@@ -40,7 +45,7 @@ function outroNome() {
 function sair() {
     window.location.reload()
     document.querySelector(".usuario").value = ""
-    
+
 }
 
 
@@ -63,15 +68,15 @@ function renderizarMensagens() {
         if (mensagens[i].type === "message") {
             mensagem.innerHTML += `<div class="mensagem"><p class="cinza">(${mensagens[i].time})</p><p><strong>${mensagens[i].from}</strong> para <strong>${mensagens[i].to}:</strong> ${mensagens[i].text}</p></div>`
 
-        } else if ((mensagens[i].type === "private_message") && ((mensagens[i].to === nome) || (mensagens[i].to === "Todos"))) {
+        } else if ((mensagens[i].type === "private_message") && ((mensagens[i].to === nome) || mensagens[i].from === nome || (mensagens[i].to === "Todos"))) {
             mensagem.innerHTML += `<div class="mensagem-privada"><p class="cinza">(${mensagens[i].time})</p><p><strong>${mensagens[i].from}</strong> reservadamente para <strong>${mensagens[i].to}:</strong> ${mensagens[i].text}</p></div>`
 
         } else if (mensagens[i].type === "status") {
             mensagem.innerHTML += `<div class="status"><p class="cinza">(${mensagens[i].time})</p><p><strong>${mensagens[i].from}</strong> ${mensagens[i].text}</p></div>`
 
-        } else if (mensagens[i].type === "private_message") {
-            //console.log(`${mensagens[i].time} ${mensagens[i].from} reservadamente para ${mensagens[i].to}: ${mensagens[i].text}`)
-        }
+        } //else if (mensagens[i].type === "private_message") {
+        //console.log(`${mensagens[i].time} ${mensagens[i].from} reservadamente para ${mensagens[i].to}: ${mensagens[i].text}`)
+        //}
     }
     document.querySelector(".container").lastChild.scrollIntoView()
 
