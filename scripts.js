@@ -18,19 +18,21 @@ function esconderMenu() {
 
 function login() {
     nome = document.querySelector(".usuario").value
-    console.log(nome)
     let novoAcesso = {
         name: nome
     };
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", novoAcesso);
     promise.then(buscarMensagens)
+    setInterval(buscarMensagens, 3000);
     promise.then(buscarUsuarios)
+    setInterval(buscarUsuarios, 10000)
+    setInterval(manterConexao, 5000)
     promise.catch(tratarFalha)
+    promise.then(renderizarEnviando)
 }
 
 function outroNome() {
     alert("Digite outro nome")
-    console.log("Digite outro nome")
     document.querySelector("input").value = ""
     document.querySelector("input").placeholder = "Digite outro nome..."
 }
@@ -38,8 +40,9 @@ function outroNome() {
 function sair() {
     window.location.reload()
     document.querySelector(".usuario").value = ""
-    console.log("saiu");
+    
 }
+
 
 function buscarMensagens() {
     let promise = axios("https://mock-api.driven.com.br/api/v6/uol/messages");
@@ -71,10 +74,9 @@ function renderizarMensagens() {
         }
     }
     document.querySelector(".container").lastChild.scrollIntoView()
-    setInterval(buscarMensagens, 30000);
-    setInterval(manterConexao, 5000)
-    // LEMBRAR DE MUDAR O TEMPO DE RELOAD!!!!!
+
 }
+
 
 function manterConexao() {
     let manterAcesso = {
@@ -82,7 +84,7 @@ function manterConexao() {
     };
 
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", manterAcesso);
-    //promise.then(console.log("Acesso Mantido"));
+    promise.then(console.log("Acesso Mantido"));
 
 }
 
@@ -90,6 +92,8 @@ function enviarMensagem() {
     texto = document.querySelector(".texto").value
     let destinatario = String(para)
     let msg = String(tipo)
+
+
 
     let mensagem = {
         from: nome,
@@ -101,8 +105,6 @@ function enviarMensagem() {
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagem);
     promise.then(apagarMensagem);
     promise.catch(sair)
-    console.log(mensagem)
-
 }
 
 function apagarMensagem() {
@@ -113,27 +115,20 @@ function apagarMensagem() {
 
 function mensagem(tipoMensagem) {
     let visivel = tipoMensagem;
-    console.log(tipoMensagem);
     let visibilidade = document.querySelector(".check-oculto.check");
-    console.log(visibilidade);
     let tipoM = visivel.querySelector("span").innerHTML.trim();
-    console.log(tipoM)
-    console.log(typeof (tipoM))
     if (visibilidade !== null) {
         visibilidade.classList.remove("check");
     }
     tipoMensagem.lastElementChild.classList.add("check")
 
-    //MEU DEUSO QUE TA ERRADO AQUI SAULO?
- 
+
+
     if (tipoM === 'Reservadamente') {
         tipo = "private_message";
     } else if (tipoM === 'Público') {
         tipo = "message"
     }
-
-    console.log(tipo)
-    console.log(typeof (tipo))
 
     renderizarEnviando()
 }
@@ -142,11 +137,8 @@ function mensagem(tipoMensagem) {
 
 function escolherUsuario(element) {
     let user = element;
-    console.log(element)
     let selecionado = document.querySelector(".destino-oculto.check");
-    console.log(selecionado)
-    para = user.querySelector("span").innerHTML;
-    console.log(para)
+    para = user.querySelector("span").innerHTML.trim();
     if (selecionado !== null) {
         selecionado.classList.remove("check");
     }
@@ -172,14 +164,13 @@ function buscarUsuarios() {
 
 function carregarUsuarios(response) {
     usuarios = response.data;
-    //console.log(response.status);
-    //console.log(usuarios)
+    console.log(response.status);
+    console.log(usuarios)
     renderizarUsuarios()
 }
 
 function renderizarUsuarios() {
     let usuario = document.querySelector("ul");
-    //console.log(usuario);
     usuario.innerHTML = `
         <li class="usuario" onclick="escolherUsuario(this)">
             <div class="sub-destino">
@@ -201,30 +192,11 @@ function renderizarUsuarios() {
                     ${usuarios[i].name}
                     </span>
                 </div>
-                <img class="destino-oculto" src="img/Vector.png" alt="">
-                
-                
+                <img class="destino-oculto" src="img/Vector.png" alt="">                             
             </li>        
         `
     }
-    setInterval(buscarUsuarios, 10000)
 }
-
-
-
-document.addEventListener("keypress", function (e) {
-    if (e.key === 'Enter') {
-
-        let btn = document.querySelector(".enviar-mensagem");
-
-        btn.click();
-        console.log(btn)
-
-    }
-});
-
-
-
 
 function tratarFalha(erroMensagens) {
     let statusCode = erroMensagens.response.status;
@@ -233,3 +205,20 @@ function tratarFalha(erroMensagens) {
         outroNome()
     }
 }
+
+document.addEventListener("keypress", function (e) {
+    if ((e.key === 'Enter') && (nome !== undefined)) {
+        let btn = document.querySelector(".enviar-mensagem");
+        btn.click();
+    }
+});
+
+
+
+
+
+
+
+
+
+
