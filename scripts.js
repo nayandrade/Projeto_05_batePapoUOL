@@ -63,6 +63,7 @@ function carregarMensagens(response) {
 function renderizarMensagens() {
     document.querySelector(".login").classList.add("esconder");
     let mensagem = document.querySelector(".container")
+    mensagem.innerHTML = ""
 
     for (let i = 0; i < mensagens.length; i++) {
         if (mensagens[i].type === "message") {
